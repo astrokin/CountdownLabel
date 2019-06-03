@@ -314,6 +314,9 @@ extension CountdownLabel {
         if let second = comp.second ,let _ = timeFormat.range(of: "ss"){
             labelText = labelText.replacingOccurrences(of: "ss", with: String.init(format: "%02ld", second))
         }
+        if timeFormat == "s", let second = comp.second {
+            labelText = "\(second)"
+        }
         return labelText
     }
     

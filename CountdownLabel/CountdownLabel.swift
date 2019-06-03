@@ -120,6 +120,12 @@ public class CountdownLabel: LTMorphingLabel {
         setCountDownTime(minutes: minutes)
     }
     
+    public convenience init(frame: CGRect, minutes: TimeInterval, timeFormat: String) {
+        self.init(frame: frame)
+        self.timeFormat = timeFormat
+        setCountDownTime(minutes: minutes)
+    }
+    
     public convenience init(frame: CGRect, date: NSDate) {
         self.init(frame: frame)
         setCountDownDate(targetDate: date)

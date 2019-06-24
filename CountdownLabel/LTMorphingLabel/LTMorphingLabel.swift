@@ -126,6 +126,8 @@ typealias LTMorphingSkipFramesClosure =
         set {
             guard text != newValue else { return }
 
+            if newValue == "0" { return }
+            
             previousText = text ?? ""
             diffResults = previousText.diffWith(newValue)
             super.text = newValue ?? ""

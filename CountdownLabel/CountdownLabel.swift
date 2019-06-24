@@ -73,6 +73,7 @@ public class CountdownLabel: LTMorphingLabel {
         }
     }
     public var timeFormat = "HH:mm:ss"
+    public var zeroValueText: String? = nil
     public var thens = [TimeInterval: CountdownExecution]()
     public var countdownAttributedText: CountdownAttributedText! {
         didSet {
@@ -120,9 +121,10 @@ public class CountdownLabel: LTMorphingLabel {
         setCountDownTime(minutes: minutes)
     }
     
-    public convenience init(frame: CGRect, minutes: TimeInterval, timeFormat: String) {
+    public convenience init(frame: CGRect, minutes: TimeInterval, timeFormat: String, zeroValueText: String) {
         self.init(frame: frame)
         self.timeFormat = timeFormat
+        self.zeroValueText = zeroValueText
         setCountDownTime(minutes: minutes)
     }
     
@@ -321,7 +323,7 @@ extension CountdownLabel {
             labelText = labelText.replacingOccurrences(of: "ss", with: String.init(format: "%02ld", second))
         }
         if timeFormat == "s", let second = comp.second {
-            labelText = "\(second)"
+            labelText = second == 0 ? (zeroValueText ?? "") : "\(second)"
         }
         return labelText
     }
